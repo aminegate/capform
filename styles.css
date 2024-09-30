@@ -570,6 +570,10 @@ span.etatName {
     .leftSideWrapper {
         top: 45px;
     }
+    
+      body {
+        overflow:auto !important; 
+    }
 
 }
 
@@ -627,6 +631,10 @@ span.etatName {
        
        overflow-y: auto;
        height: 100vh;
+    }
+    
+    body {
+        overflow:auto !important; 
     }
 
 
