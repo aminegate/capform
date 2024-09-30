@@ -337,6 +337,7 @@ p.printDescription {
     width: 47%;
     top: 113px;
     transition: transform 0.5s ease;
+    
     /* Smooth transition */
 }
 
@@ -549,7 +550,8 @@ span.etatName {
         top: 113px;
         left: 34%;
         transform: translateX(105%);
-        
+        max-height: 100vh; /* or any other height limit you prefer */
+    overflow-y: auto; /* Enable vertical scrolling */
     }
 
     .rightSideWrapper::before {
@@ -567,6 +569,7 @@ span.etatName {
     .leftSideWrapper {
         top: 45px;
     }
+
 
 }
 
@@ -616,11 +619,8 @@ span.etatName {
         font-size: 15px !important;
     }
     
-     .rightSideWrapper {
-       
-       overflow-y: auto;
-       height: 100vh;
-    }
+
+    
  
 
 
