@@ -1,9 +1,11 @@
 /*
 
 1- Global CSS
+   - Afficher Button
 2- Menu
 3- Left Side Box
 4- Right Side Box
+5- Media Query
 
 */
 
@@ -37,6 +39,8 @@ label {
 
 }
 
+/************** Afficher Button Start ******************/
+
 .displayButton {
     overflow: hidden;
     width: 100%;
@@ -61,22 +65,8 @@ button#displayOnSmallScreen.shrink {
     /* New width when the fixed div is shown */
 }
 
-.rightSideWrapper.show {
-    transform: translateX(0%);
-    /* Move it into view */
-}
+/************** Afficher Button Start ******************/
 
-
-.hiddenCells {
-    opacity: 0;
-    visibility: hidden;
-    /* Hide after opacity transition */
-}
-
-.leftSideWrapper.reduce {
-
-    width: 32%;
-}
 
 
 /********************** Global CSS End **************************/
@@ -244,6 +234,10 @@ button#displayOnSmallScreen.shrink {
 }
 
 
+.leftSideWrapper.reduce {
+
+    width: 32%;
+}
 
 .printSection {
     padding: 30px;
@@ -329,9 +323,6 @@ p.printDescription {
 
 /********************** Right side start (it has (select + input[date] + input[text] + radio button )  **************************/
 
-
-
-
 .rightSideWrapper {
     position: fixed;
     width: 47%;
@@ -339,6 +330,11 @@ p.printDescription {
     transition: transform 0.5s ease;
     
     /* Smooth transition */
+}
+
+.rightSideWrapper.show {
+    transform: translateX(0%);
+    /* Move it into view */
 }
 
 
@@ -503,9 +499,6 @@ input#dateEnd {
 
 /*********** other CSS *************/
 
-
-
-
 input#numDossier {
     background: whitesmoke;
 }
@@ -526,21 +519,9 @@ span.etatName {
     height: 82px;
 }
 
-
 /********************** Right side End (it has (select + input[date] + input[text] + radio button )  **************************/
 
-
-
 /********************** Media Query Start **************************/
-
-@media (min-width:1460px) (max-width: 1735px) {}
-
-@media (min-width:1200px) (max-width: 1460px) {}
-
-
-@media (max-width: 1200px) {
-    ...
-}
 
 
 @media (max-width: 992px) {
@@ -619,13 +600,76 @@ span.etatName {
         font-size: 15px !important;
     }
     
+    
+   .rightSideWrapper::before {
+        width: 100vw;
+        height: 100vh;
+        top: 0%;
+    }
+
+    .displayButton {
+        margin-top: 70px;
+
+    }
+
+   .rightSideWrapper {
+        left: 0;
+        width: 100%;
+        top: 26%;
+        height: 100vh;
+        background: white;
+       overflow-y: auto;
+    }
+
+    button#displayOnSmallScreen.shrink {
+        width: 100%;
+    }
+
+    .leftSideWrapper.reduce {
+        width: 100%;
+    }
+
+    td:nth-child(2),
+    td:last-child,
+    th:nth-child(2),
+    th:last-child {
+
+        display: table-cell !important;
+        opacity: 1 !important;
+        padding: 10px !important;
+        font-size: 15px !important;
+        overflow: visible !important;
+
+    }
+
+    td {
+        width: 30%;
+
+    }
+
+    .printSection {
+        padding: 10px;
+    }
+
+    fieldset {
+        padding: 10px !important;
+    }
+
+   form {
+        padding: 70px 10px;
+    }
+    
+        label {
+        font-size: 14px;
+    }
 
     
- 
-
-
+    fieldset button {
+    font-weight: 600;
+    font-size: 13px;
 }
-
+    
+}
 
 @media (max-width: 576px) {
 
@@ -683,8 +727,8 @@ span.etatName {
         padding: 10px !important;
     }
 
-    form {
-        padding: 10px;
+   form {
+        padding: 70px 10px;
     }
     
         label {
