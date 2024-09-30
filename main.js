@@ -48,6 +48,9 @@ for (var i = 2024; i >= 2000; i--) {
     /* end */
 /******************** Print option for the first button + display warning when nothing is select or choosed or filled + ***********************/
         /* Start */
+    
+    
+// First JavaScript Functionality for Warnings
 $('#submit-1').on('click', function(event) {
     event.preventDefault(); // Prevent the default behavior
 
@@ -109,12 +112,21 @@ $('#submit-1').on('click', function(event) {
     // Apply transformation for small screens only if there is a warning
     if (hasWarning && $(window).width() <= 576) {
         $('.rightSideWrapper').addClass('show'); // Add class to trigger the transformation
-        $('#displayOnSmallScreen').text('Cacher'); // Change button text to "Cacher"
+        
+        // Only change button text if it hasn't been toggled by the other script
+        if ($('#displayOnSmallScreen').text() === 'Afficher') {
+            $('#displayOnSmallScreen').text('Cacher'); // Change to "Cacher"
+        }
     } else {
         $('.rightSideWrapper').removeClass('show'); // Remove class if no warning or screen width is greater than 576px
-        $('#displayOnSmallScreen').text('Afficher'); // Change button text to "Afficher"
+        
+        // Only change button text if it hasn't been toggled by the other script
+        if ($('#displayOnSmallScreen').text() === 'Cacher') {
+            $('#displayOnSmallScreen').text('Afficher'); // Change to "Afficher"
+        }
     }
 });
+
 
 
 
@@ -257,14 +269,21 @@ $('input[type="radio"]').on('change', function() {
     
   
 $('#displayOnSmallScreen').click(function() {
-    // Toggle visibility of the right side wrapper
-    $('.rightSideWrapper').toggleClass('show');
-    $(this).toggleClass('shrink');
+    // Check the current text of the button before toggling the wrapper
+    if ($(this).text() === 'Afficher') {
+        // If the button says "Afficher", we toggle the visibility of the right side wrapper
+        $('.rightSideWrapper').addClass('show'); // Show the right side wrapper
+        $(this).text('Cacher'); // Change the button text to "Cacher"
+    } else {
+        // If the button says "Cacher", we toggle the visibility of the right side wrapper
+        $('.rightSideWrapper').removeClass('show'); // Hide the right side wrapper
+        $(this).text('Afficher'); // Change the button text back to "Afficher"
+    }
 
-    // Switch button text
+    $(this).toggleClass('shrink'); // Toggle the shrink class
+
+    // Additional animations for fieldset and other elements when the button is clicked
     if ($(this).hasClass('shrink')) {
-        $(this).text('Cacher'); // Change to "Cacher" when fixed div is shown
-        
         // Smoothly reduce padding and height of fieldset
         $('fieldset').each(function() {
             $(this).data('origPadding', $(this).css('padding')); // Store original padding
@@ -315,10 +334,7 @@ $('#displayOnSmallScreen').click(function() {
 
         // Reduce the left side wrapper
         $('.leftSideWrapper').addClass('reduce');
-
     } else {
-        $(this).text('Afficher'); // Change to "Afficher" when fixed div is hidden
-        
         // Smoothly restore padding and height of fieldset
         $('fieldset').each(function() {
             $(this).animate({
@@ -359,8 +375,8 @@ $('#displayOnSmallScreen').click(function() {
         // Restore the left side wrapper width
         $('.leftSideWrapper').removeClass('reduce');
     }
-}); 
-    
+});
+
     
 
 
