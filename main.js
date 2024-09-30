@@ -116,8 +116,8 @@ $('#submit-1').on('click', function(event) {
         $('form').css('overflow-y', 'auto'); // Enable scrolling for the form
 
         // Only change button text if it hasn't been toggled by the other script
-        if ($('#displayOnSmallScreen').text() === 'Afficher') {
-            $('#displayOnSmallScreen').text('Cacher'); // Change to "Cacher"
+        if ($('#displayOnSmallScreen').text() === 'Afficher le formulaire') {
+            $('#displayOnSmallScreen').text('Masquer le formulaire'); // Change to "Masquer le formulaire"
         }
     } else {
         $('.rightSideWrapper').removeClass('show'); // Remove class if no warning or screen width is greater than 576px
@@ -127,8 +127,8 @@ $('#submit-1').on('click', function(event) {
         $('form').css('overflow-y', ''); // Reset overflow for the form
 
         // Only change button text if it hasn't been toggled by the other script
-        if ($('#displayOnSmallScreen').text() === 'Cacher') {
-            $('#displayOnSmallScreen').text('Afficher'); // Change to "Afficher"
+        if ($('#displayOnSmallScreen').text() === 'Masquer le formulaire') {
+            $('#displayOnSmallScreen').text('Afficher le formulaire'); // Change to "Afficher le formulaire"
         }
     }
 });
@@ -243,7 +243,7 @@ $('.navLink').on('click', function(e) {
     if ($('.rightSideWrapper').hasClass('show')) {
         // Close the right side wrapper
         $('.rightSideWrapper').removeClass('show');
-        $('#displayOnSmallScreen').text('Afficher'); // Change the button text back to "Afficher"
+        $('#displayOnSmallScreen').text('Afficher le formulaire'); // Change the button text back to "Afficher le formulaire"
 
         // Allow scrolling again based on screen width
         if ($(window).width() <= 576) {
@@ -306,10 +306,10 @@ $('.navLink').on('click', function(e) {
     
 $('#displayOnSmallScreen').click(function() {
     // Check the current text of the button before toggling the wrapper
-    if ($(this).text() === 'Afficher') {
-        // If the button says "Afficher", we toggle the visibility of the right side wrapper
+    if ($(this).text() === 'Afficher le formulaire') {
+        // If the button says "Afficher le formulaire", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').addClass('show'); // Show the right side wrapper
-        $(this).text('Cacher'); // Change the button text to "Cacher"
+        $(this).text('Masquer le formulaire'); // Change the button text to "Masquer le formulaire"
 
         // Prevent scrolling based on screen width
         if ($(window).width() <= 576) {
@@ -320,9 +320,9 @@ $('#displayOnSmallScreen').click(function() {
             $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the form
         }
     } else {
-        // If the button says "Cacher", we toggle the visibility of the right side wrapper
+        // If the button says "Masquer le formulaire", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').removeClass('show'); // Hide the right side wrapper
-        $(this).text('Afficher'); // Change the button text back to "Afficher"
+        $(this).text('Afficher le formulaire'); // Change the button text back to "Afficher le formulaire"
 
         // Allow scrolling again based on screen width
         if ($(window).width() <= 576) {
