@@ -630,7 +630,7 @@ span.etatName {
 
    .rightSideWrapper::before {
         width: 100vw;
-        height: 72vh;
+        height: 77vh;
         top: 0%;
     }
 
@@ -643,7 +643,7 @@ span.etatName {
         left: 0;
         width: 97%;
         top: 27%;
-        height: 80vh;
+        height: 77vh;
         background: white;
     }
 
