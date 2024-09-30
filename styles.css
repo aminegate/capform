@@ -551,6 +551,13 @@ span.etatName {
         top: 45px;
     }
 
+    
+
+    legend {
+        font-size: 17px !important;
+        padding: 0px 10px !important;
+    }
+    
 
 }
 
