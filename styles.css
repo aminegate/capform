@@ -671,3 +671,13 @@ span.etatName {
         width: 30%;
 
     }
+    
+    .printSection {
+    padding: 10px;
+}
+    
+    fieldset {
+    padding: 10px !important;
+}
+    
+}
