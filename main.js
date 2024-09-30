@@ -223,13 +223,15 @@ $(document).ready(function () {
     
      /******************** For Small Screen : Check if theres a red warning and display rightSideWrapper  ***********************/
     /* Start */
-    
-  // Function to handle warnings and apply effects
-    function handleWarnings(hasWarning) {
-        // Check if the right side is already open
-        var isRightSideOpen = $('.rightSideWrapper').hasClass('show');
 
-        // If there are warnings and the right side is not open
+    
+    // Function to handle warnings and apply effects
+function handleWarnings(hasWarning) {
+    // Check if the right side is already open
+    var isRightSideOpen = $('.rightSideWrapper').hasClass('show');
+    
+    // Only apply effects if the window width is 992 or less
+    if ($(window).width() <= 992) {
         if (hasWarning && !isRightSideOpen) {
             // Show and shrink the right side wrapper
             $('.rightSideWrapper').addClass('show');
@@ -258,10 +260,8 @@ $(document).ready(function () {
             $('.leftSideWrapper').addClass('reduce');
 
             // Disable body scrolling on small screens
-            if ($(window).width() <= 992) {
-                $('body').css('overflow', 'hidden'); // Disable body scrolling
-                $('form').css('overflow-y', 'auto'); // Enable scrolling for the form
-            }
+            $('body').css('overflow', 'hidden'); // Disable body scrolling
+            $('form').css('overflow-y', 'auto'); // Enable scrolling for the form
 
             // Update the button text if needed
             if ($('#displayOnSmallScreen').text() === 'Afficher le formulaire') {
@@ -273,7 +273,7 @@ $(document).ready(function () {
             // If there are no warnings and the right side is open, reset the right and left side wrappers
 
             // Restore the original padding and remove shrink
-            $('.rightSideWrapper').removeClass('show shrink');
+            $('.rightSideWrapper').removeClass('show');
 
             // Show the second and last columns with smooth transition
             $('td:nth-child(2), td:last-child, th:nth-child(2), th:last-child').each(function () {
@@ -303,18 +303,23 @@ $(document).ready(function () {
                 $('#displayOnSmallScreen').removeClass('shrink');
             }
         }
+    } else {
+        // If the screen width is greater than 992, do nothing
+        console.log("Screen width is greater than 992px, no action taken.");
     }
+}
 
-    // Attach click event to all buttons with class 'toggle-button' inside fieldsets
-    $('fieldset button.toggle-button').on('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission
+// Attach click event to all buttons with class 'toggle-button' inside fieldsets
+$('fieldset button.toggle-button').on('click', function (event) {
+    event.preventDefault(); // Prevent the default form submission
 
-        // Check for warnings based on the presence of a warning class in <p>
-        var hasWarning = $('p.warning').length > 0; // Check if there's any <p> with the class 'warning'
+    // Check for warnings based on the presence of a warning class in <p>
+    var hasWarning = $('p.warning').length > 0; // Check if there's any <p> with the class 'warning'
 
-        // Call the function to handle warnings
-        handleWarnings(hasWarning);
-    });
+    // Call the function to handle warnings
+    handleWarnings(hasWarning);
+});
+
 
         /* End */
     
