@@ -549,6 +549,7 @@ span.etatName {
         top: 113px;
         left: 34%;
         transform: translateX(105%);
+        
     }
 
     .rightSideWrapper::before {
@@ -621,6 +622,11 @@ span.etatName {
     select {
         font-size: 15px !important;
     }
+    
+     .rightSideWrapper {
+       
+       overflow-y: auto;
+    }
 
 
 }
@@ -645,6 +651,7 @@ span.etatName {
         top: 26%;
         height: 100vh;
         background: white;
+       overflow-y: auto;
     }
 
     button#displayOnSmallScreen.shrink {
