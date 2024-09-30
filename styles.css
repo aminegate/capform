@@ -560,19 +560,12 @@ span.etatName {
         left: 0;
         height: 100vh;
         background: white;
-        width: 100vw;
+        width: 63vw;
     }
 
-    form#formOne {
-        left: 2%;
-    }
 
     .leftSideWrapper {
         top: 45px;
-    }
-    
-      body {
-        overflow:auto !important; 
     }
 
 }
@@ -587,10 +580,6 @@ span.etatName {
     .yearContainer,
     .dossierWrapper {
         width: 50%;
-    }
-
-    form#formOne {
-        left: 2%;
     }
 
     .leftSideWrapper {
@@ -632,10 +621,7 @@ span.etatName {
        overflow-y: auto;
        height: 100vh;
     }
-    
-    body {
-        overflow:auto !important; 
-    }
+ 
 
 
 }
@@ -656,7 +642,7 @@ span.etatName {
 
    .rightSideWrapper {
         left: 0;
-        width: 96%;
+        width: 100%;
         top: 26%;
         height: 100vh;
         background: white;
@@ -699,12 +685,12 @@ span.etatName {
 
     form {
         padding: 10px;
-        left: 1% !important;
     }
     
         label {
         font-size: 14px;
     }
+
     
     fieldset button {
     font-weight: 600;

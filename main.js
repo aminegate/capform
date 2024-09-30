@@ -48,7 +48,6 @@ for (var i = 2024; i >= 2000; i--) {
     /* end */
 /******************** Print option for the first button + display warning when nothing is select or choosed or filled + ***********************/
         /* Start */
-    
 // First JavaScript Functionality for Warnings
 $('#submit-1').on('click', function(event) {
     event.preventDefault(); // Prevent the default behavior
@@ -112,9 +111,9 @@ $('#submit-1').on('click', function(event) {
     if (hasWarning && $(window).width() <= 576) {
         $('.rightSideWrapper').addClass('show'); // Add class to trigger the transformation
         
-        // Prevent scrolling on the body
+        // Prevent scrolling on the body and apply scrolling for form
         $('body').css('overflow', 'hidden'); // Disable body scrolling
-        $('form').css('overflow-y', 'auto'); // Enable scrolling for rightSideWrapper
+        $('form').css('overflow-y', 'auto'); // Enable scrolling for the form
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Afficher') {
@@ -125,7 +124,7 @@ $('#submit-1').on('click', function(event) {
         
         // Allow scrolling again
         $('body').css('overflow', 'auto'); // Enable scrolling on the body
-        $('form').css('overflow-y', ''); // Reset overflow for rightSideWrapper
+        $('form').css('overflow-y', ''); // Reset overflow for the form
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Cacher') {
@@ -133,6 +132,7 @@ $('#submit-1').on('click', function(event) {
         }
     }
 });
+
 
 
 
@@ -274,24 +274,36 @@ $('input[type="radio"]').on('change', function() {
     
     
      /* end */
+
+    
 $('#displayOnSmallScreen').click(function() {
     // Check the current text of the button before toggling the wrapper
     if ($(this).text() === 'Afficher') {
         // If the button says "Afficher", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').addClass('show'); // Show the right side wrapper
         $(this).text('Cacher'); // Change the button text to "Cacher"
-        
-        // Prevent scrolling
-        $('body').css('overflow', 'hidden'); // Disable scrolling
-        $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the right side
+
+        // Prevent scrolling based on screen width
+        if ($(window).width() <= 576) {
+            $('body').css('overflow', 'hidden'); // Disable body scrolling
+            $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the right side
+        } else if ($(window).width() > 576 && $(window).width() <= 992) {
+            $('body').css('overflow-y', 'auto'); // Enable vertical scrolling on body
+            $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the form
+        }
     } else {
         // If the button says "Cacher", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').removeClass('show'); // Hide the right side wrapper
         $(this).text('Afficher'); // Change the button text back to "Afficher"
-        
-        // Allow scrolling again
-        $('body').css('overflow', 'auto'); // Enable scrolling
-        $('form').css('overflow-y', ''); // Reset overflow for rightSideWrapper
+
+        // Allow scrolling again based on screen width
+        if ($(window).width() <= 576) {
+            $('body').css('overflow', 'auto'); // Enable scrolling on the body
+            $('form').css('overflow-y', ''); // Reset overflow for rightSideWrapper
+        } else if ($(window).width() > 576 && $(window).width() <= 992) {
+            $('body').css('overflow-y', ''); // Reset overflow for body
+            $('form').css('overflow-y', ''); // Reset overflow for form
+        }
     }
 
     $(this).toggleClass('shrink'); // Toggle the shrink class
@@ -390,7 +402,6 @@ $('#displayOnSmallScreen').click(function() {
         $('.leftSideWrapper').removeClass('reduce');
     }
 });
-
 
 
 
