@@ -232,46 +232,74 @@ $('input[type="radio"]').on('change', function() {
      /* end */
 /************* Smooth Scroll + flash animation **************/
 
-     /* Start */
+// Handle the navLink click event
+$('.navLink').on('click', function(e) {
+    e.preventDefault(); // Prevent default anchor click behavior
 
-    $('.navLink').on('click', function(e) {
-        e.preventDefault(); // Prevent default anchor click behavior
+    var target = $(this).attr('href'); // Get the target fieldset ID
+    var $fieldset = $(target);
 
-        var target = $(this).attr('href'); // Get the target fieldset ID
-        var $fieldset = $(target);
+    // Check if the right side wrapper is open and close it
+    if ($('.rightSideWrapper').hasClass('show')) {
+        // Close the right side wrapper
+        $('.rightSideWrapper').removeClass('show');
+        $('#displayOnSmallScreen').text('Afficher'); // Change the button text back to "Afficher"
 
-        // Debug: Check if the target fieldset exists
-        if ($fieldset.length) {
-        
-            
-            // Smooth scroll to the fieldset
-            $('html, body').animate({
-                scrollTop: $fieldset.offset().top - 130
-            }, 1000, function() {
-                // Flash effect after scrolling
-                var originalColor = $fieldset.css('background-color');
-
-                // Flashing effect
-                $fieldset.css('background-color', '#3f3c62');
-                
-                // Set timeout to flash twice in one second
-                setTimeout(function() {
-                    $fieldset.css('background-color', originalColor); // Revert to original
-                }, 250); // Flash duration
-
-                setTimeout(function() {
-                    $fieldset.css('background-color', '#3f3c62'); // Flash again
-                }, 500); // Time until the second flash
-                
-                setTimeout(function() {
-                    $fieldset.css('background-color', originalColor); // Revert again
-                }, 750); // Revert back to original after the second flash
-            });
-        } else {
-           
+        // Allow scrolling again based on screen width
+        if ($(window).width() <= 576) {
+            $('body').css('overflow', 'auto'); // Enable scrolling on the body
+            $('form').css('overflow-y', ''); // Reset overflow for the form
+        } else if ($(window).width() > 576 && $(window).width() <= 992) {
+            $('body').css('overflow-y', ''); // Reset overflow for the body
+            $('form').css('overflow-y', ''); // Reset overflow for the form
         }
-    });
-    
+
+        // Restore any shrunken elements
+        $('#displayOnSmallScreen').removeClass('shrink');
+        $('fieldset, .printSection, legend').each(function() {
+            $(this).animate({
+                padding: $(this).data('origPadding'), // Restore original padding
+                height: $(this).data('origHeight') // Restore original height
+            }, 500);
+        });
+
+        // Restore hidden columns
+        $('td:nth-child(2), td:last-child, th:nth-child(2), th:last-child').each(function() {
+            $(this).css('display', 'table-cell').animate({
+                width: $(this).data('origWidth'), // Restore original width
+                padding: $(this).data('origPadding'), // Restore original padding
+                'font-size': $(this).data('origFontSize'), // Restore original font-size
+                opacity: 1 // Fade in smoothly
+            }, 500);
+        });
+
+        // Restore left side wrapper width
+        $('.leftSideWrapper').removeClass('reduce');
+    }
+
+    // Smooth scroll to the target fieldset after closing the right side
+    if ($fieldset.length) {
+        $('html, body').animate({
+            scrollTop: $fieldset.offset().top - 130
+        }, 1000, function() {
+            // Flash effect after scrolling
+            var originalColor = $fieldset.css('background-color');
+
+            // Flashing effect
+            $fieldset.css('background-color', '#3f3c62');
+            setTimeout(function() {
+                $fieldset.css('background-color', originalColor); // Revert to original
+            }, 250); // Flash duration
+            setTimeout(function() {
+                $fieldset.css('background-color', '#3f3c62'); // Flash again
+            }, 500); // Time until the second flash
+            setTimeout(function() {
+                $fieldset.css('background-color', originalColor); // Revert again
+            }, 750); // Revert back to original after the second flash
+        });
+    }
+});
+
     
      /* end */
 
