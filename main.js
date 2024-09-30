@@ -112,9 +112,7 @@ $('#submit-1').on('click', function(event) {
     if (hasWarning && $(window).width() <= 576) {
         $('.rightSideWrapper').addClass('show'); // Add class to trigger the transformation
         
-        // Prevent scrolling on the body
-        $('body').css('overflow', 'hidden'); // Disable body scrolling
-        $('.rightSideWrapper').css('overflow-y', 'auto'); // Enable scrolling for rightSideWrapper
+     
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Afficher') {
@@ -123,9 +121,7 @@ $('#submit-1').on('click', function(event) {
     } else {
         $('.rightSideWrapper').removeClass('show'); // Remove class if no warning or screen width is greater than 576px
         
-        // Allow scrolling again
-        $('body').css('overflow', 'auto'); // Enable scrolling on the body
-        $('.rightSideWrapper').css('overflow-y', ''); // Reset overflow for rightSideWrapper
+        
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Cacher') {
@@ -280,18 +276,12 @@ $('#displayOnSmallScreen').click(function() {
         // If the button says "Afficher", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').addClass('show'); // Show the right side wrapper
         $(this).text('Cacher'); // Change the button text to "Cacher"
-        
-        // Prevent scrolling
-        $('body').css('overflow', 'hidden'); // Disable scrolling
-        $('.rightSideWrapper').css('overflow-y', 'auto'); // Enable vertical scrolling for the right side
+
     } else {
         // If the button says "Cacher", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').removeClass('show'); // Hide the right side wrapper
         $(this).text('Afficher'); // Change the button text back to "Afficher"
-        
-        // Allow scrolling again
-        $('body').css('overflow', 'auto'); // Enable scrolling
-        $('.rightSideWrapper').css('overflow-y', ''); // Reset overflow for rightSideWrapper
+
     }
 
     $(this).toggleClass('shrink'); // Toggle the shrink class
