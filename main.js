@@ -49,7 +49,6 @@ for (var i = 2024; i >= 2000; i--) {
 /******************** Print option for the first button + display warning when nothing is select or choosed or filled + ***********************/
         /* Start */
     
-    
 // First JavaScript Functionality for Warnings
 $('#submit-1').on('click', function(event) {
     event.preventDefault(); // Prevent the default behavior
@@ -113,8 +112,9 @@ $('#submit-1').on('click', function(event) {
     if (hasWarning && $(window).width() <= 576) {
         $('.rightSideWrapper').addClass('show'); // Add class to trigger the transformation
         
-        // Prevent scrolling
-        $('body').css('overflow', 'hidden'); // Disable scrolling
+        // Prevent scrolling on the body
+        $('body').css('overflow', 'hidden'); // Disable body scrolling
+        $('.rightSideWrapper').css('overflow-y', 'auto'); // Enable scrolling for rightSideWrapper
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Afficher') {
@@ -124,7 +124,8 @@ $('#submit-1').on('click', function(event) {
         $('.rightSideWrapper').removeClass('show'); // Remove class if no warning or screen width is greater than 576px
         
         // Allow scrolling again
-        $('body').css('overflow', 'auto'); // Enable scrolling
+        $('body').css('overflow', 'auto'); // Enable scrolling on the body
+        $('.rightSideWrapper').css('overflow-y', ''); // Reset overflow for rightSideWrapper
 
         // Only change button text if it hasn't been toggled by the other script
         if ($('#displayOnSmallScreen').text() === 'Cacher') {
@@ -273,7 +274,6 @@ $('input[type="radio"]').on('change', function() {
     
     
      /* end */
-    
 $('#displayOnSmallScreen').click(function() {
     // Check the current text of the button before toggling the wrapper
     if ($(this).text() === 'Afficher') {
@@ -283,6 +283,7 @@ $('#displayOnSmallScreen').click(function() {
         
         // Prevent scrolling
         $('body').css('overflow', 'hidden'); // Disable scrolling
+        $('.rightSideWrapper').css('overflow-y', 'auto'); // Enable vertical scrolling for the right side
     } else {
         // If the button says "Cacher", we toggle the visibility of the right side wrapper
         $('.rightSideWrapper').removeClass('show'); // Hide the right side wrapper
@@ -290,6 +291,7 @@ $('#displayOnSmallScreen').click(function() {
         
         // Allow scrolling again
         $('body').css('overflow', 'auto'); // Enable scrolling
+        $('.rightSideWrapper').css('overflow-y', ''); // Reset overflow for rightSideWrapper
     }
 
     $(this).toggleClass('shrink'); // Toggle the shrink class
@@ -389,8 +391,6 @@ $('#displayOnSmallScreen').click(function() {
     }
 });
 
-
-    
 
 
 

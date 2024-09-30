@@ -628,9 +628,9 @@ span.etatName {
 
 @media (max-width: 576px) {
 
-    .rightSideWrapper::before {
+   .rightSideWrapper::before {
         width: 100vw;
-        height: 89vh;
+        height: 72vh;
         top: 0%;
     }
 
@@ -639,11 +639,12 @@ span.etatName {
 
     }
 
-    .rightSideWrapper {
-   
+   .rightSideWrapper {
         left: 0;
-        width: 96%;
-        top: 22%;
+        width: 97%;
+        top: 27%;
+        height: 80vh;
+        background: white;
     }
 
     button#displayOnSmallScreen.shrink {
@@ -682,6 +683,7 @@ span.etatName {
 
     form {
         padding: 10px;
+        left: 0%;
     }
     
         label {
