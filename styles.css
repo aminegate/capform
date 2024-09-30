@@ -640,7 +640,7 @@ span.etatName {
     }
 
     .rightSideWrapper {
-        z-index: 99;
+   
         left: 0;
         width: 96%;
         top: 22%;
@@ -687,5 +687,10 @@ span.etatName {
         label {
         font-size: 14px;
     }
+    
+    fieldset button {
+    font-weight: 600;
+    font-size: 13px;
+}
 
 }
