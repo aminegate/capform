@@ -549,7 +549,7 @@ $('fieldset button.toggle-button').on('click', function (event) {
             if ($(window).width() <= 576) {
                 $('body').css('overflow', 'hidden'); // Disable body scrolling
                 $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the right side
-            } else if ($(window).width() > 576 && $(window).width() <= 992) {
+            } else if ($(window).width() > 576 && $(window).width() <= 768) {
                 $('body').css('overflow-y', 'hidden'); // Enable vertical scrolling on body
                 $('form').css('overflow-y', 'auto'); // Enable vertical scrolling for the form
             }
@@ -562,9 +562,9 @@ $('fieldset button.toggle-button').on('click', function (event) {
             if ($(window).width() <= 576) {
                 $('body').css('overflow', 'auto'); // Enable scrolling on the body
                 $('form').css('overflow-y', ''); // Reset overflow for rightSideWrapper
-            } else if ($(window).width() > 576 && $(window).width() <= 992) {
-                $('body').css('overflow-y', ''); // Reset overflow for body
-                $('form').css('overflow-y', ''); // Reset overflow for form
+            } else if ($(window).width() > 576 && $(window).width() <= 768) {
+                $('body').css('overflow-y', 'hidden'); // Reset overflow for body
+                $('form').css('overflow-y', 'auto'); // Reset overflow for form
             }
         }
 
