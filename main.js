@@ -80,7 +80,27 @@ $(document).ready(function () {
          
          
          */
+    
+    
+    /********************** Paramètres accordion ***************************/
+    
+ $('.accordion-button').on('click', function() {
+    var button = $(this);
 
+    // No need to set transition in JS; it's already handled in CSS
+    // Delay the class toggle slightly to allow the transition to take effect
+    setTimeout(function() {
+        button.toggleClass('collapsed');
+    }, 10); // Keep this small delay to ensure the transition occurs smoothly
+});
+    
+     $('td').each(function() {
+        var accordions = $(this).find('.accordion'); // Get all accordions within the current <td>
+        
+        if (accordions.length > 1) {
+            accordions.not(':last').css('margin-bottom', '10px'); // Apply margin-bottom to all but the last accordion
+        }
+    });
     /******************** Print option for buttons + display warning when nothing is selected or choosed or filled  ***********************/
     /* Start */
 
@@ -426,7 +446,7 @@ $('fieldset button.toggle-button').on('click', function (event) {
     // Loop through each <td> that contains buttons
     $('td').each(function () {
         // Get all buttons within the current <td>
-        var $buttons = $(this).find('button');
+        var $buttons = $(this).find('.toggle-button');
 
         if ($buttons.length === 1) {
             // If there is only one button, apply border-radius to all corners

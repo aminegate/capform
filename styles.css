@@ -9,6 +9,121 @@
 
 */
 
+.card-body {
+    padding: 5px 10px;
+}
+
+
+button.btn.btn-link.accordion-button {
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0px;
+    text-align: left;
+    padding-left: 5px;
+}
+.card-header {
+    padding: 7px;
+}
+
+button.btn.btn-link.accordion-button:hover {
+    text-decoration: none;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.btn-link:focus {
+    text-decoration: none !important;
+}
+
+ .accordion-button::after {
+     content: '\f107';
+     /* Font Awesome down arrow */
+     font-family: 'Font Awesome 5 Free';
+     /* Font Awesome */
+     font-weight: 900;
+     /* Use solid icons */
+     position: absolute;
+     right: 15px;
+     /* Position the arrow */
+     transition: transform 0.6s;
+     /* Transition for smooth rotation */
+ }
+
+.accordion-button.collapsed::after {
+    content: '\f106'; /* Font Awesome up arrow */
+    /* Change to the up arrow when collapsed */
+}
+
+.card {
+
+    background-color: white;
+}
+
+/*
+ .accordion-button.collapsed::after {
+     transform: rotate(180deg);
+     /* Rotate arrow when collapsed 
+ }*/
+
+/**********************************/
+
+.rectangle-list {
+    counter-reset: li; /* Initialize the counter for the list */
+    padding: 0;
+    list-style: none;
+    margin: 0px;
+}
+
+.rectangle-list a {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    margin: .5em 0 .5em 2.5em;
+    background: white;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+    border-radius: 5px;
+}
+
+.rectangle-list a:hover {
+    background: #eee;
+}
+
+.rectangle-list a:before {
+    content: counter(li); /* Use the initialized counter */
+    counter-increment: li; /* Increment the counter */
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #f19e57;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.rectangle-list a:after {
+    position: absolute;
+    content: '';
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+}
+
+.rectangle-list a:hover:after {
+    left: -.5em;
+    border-left-color: #f19e57;
+}
+
 
 /********************** Global CSS Star **************************/
 
@@ -30,7 +145,6 @@ label {
     height: 100%;
     overflow: hidden;
     background: url(images/3.jpg);
-    background-size: cover;
 }
 
 .sideContent {
