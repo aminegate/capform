@@ -6,25 +6,98 @@ $(document).ready(function () {
     
     /*
            
-           // Select Checker Start
+// Select Checker Start
+$('select').each(function () {
+    var $select = $(this);
+    var $warning = $select.next('.warning');
 
+    if ($select.val() === "") {
+        $warning.addClass('warningDisplay');
+        $select.css('border', '2px solid red'); // Add red border to the select element
+        hasWarning = true; // Set the flag if there's a warning
+    } else {
+        $warning.removeClass('warningDisplay');
+        $select.css('border', ''); // Remove the red border if the value is valid
+    }
+});
+// Select Checker End
 
+// Input Text Checker Start
+$('input[type="text"]').each(function () {
+    var $input = $(this);
+    var $warning = $input.next('.warning');
+
+    if ($input.val().trim() === "") {
+        $warning.addClass('warningDisplay');
+        $input.css('border', '2px solid red'); // Add red border to the input element
+        hasWarning = true; // Set the flag if there's a warning
+    } else {
+        $warning.removeClass('warningDisplay');
+        $input.css('border', ''); // Remove the red border if the value is valid
+    }
+});
+// Input Text Checker End
+
+// Input Date Checker Start
+
+$('input[type="date"]').each(function () {
+    var $input = $(this);
+    var $warning = $input.next('.warning');
+
+    if ($input.val() === "") {
+        $warning.addClass('warningDisplay');
+        $input.css('border', '2px solid red'); // Add red border to the input element
+        hasWarning = true; // Set the flag if there's a warning
+    } else {
+        $warning.removeClass('warningDisplay');
+        $input.css('border', ''); // Remove the red border if the value is valid
+    }
+});
+// Input Date Checker End
+
+// Input Radio Checker Start
+$('input[type="radio"]').each(function () {
+    var groupName = $(this).attr('name'); // Get the group name of the radio button
+    var $warning = $(this).closest('.etatWrapper').find('.warning'); // Correctly find the warning element in the closest wrapper
+
+    // Check if any radio button in the group is chosen
+    if ($('input[name="' + groupName + '"]:checked').length === 0) {
+        $warning.addClass('warningDisplay');
+        $(this).closest('.etatWrapper').css('border', '2px solid red'); // Add red border to the radio group wrapper
+        hasWarning = true; // Set the flag if there's a warning
+    } else {
+        $warning.removeClass('warningDisplay');
+        $(this).closest('.etatWrapper').css('border', ''); // Remove the red border if a radio button is selected
+    }
+});
+// Input Radio Checker End
+
+    
+    
+    /******************** Print option for buttons + display warning when nothing is selected or choosed or filled  ***********************/
+    /* Start */
+
+var lastButtonClicked = null; // Track the last clicked button
+
+// Object to map button types to their respective warning check functions
+var buttonWarningChecks = {
+    button1: function () {
+        var hasWarning = false; // Flag to track if there are any warnings
+
+        // Check for select elements related to Button 1
         $('select').each(function () {
             var $select = $(this);
             var $warning = $select.next('.warning');
 
             if ($select.val() === "") {
                 $warning.addClass('warningDisplay');
+                $select.css('border', '2px solid red'); // Add red border to the select element
                 hasWarning = true; // Set the flag if there's a warning
             } else {
                 $warning.removeClass('warningDisplay');
+                $select.css('border', ''); // Remove the red border if the value is valid
             }
         });
-        
-         // Select Checker End
-         
-         /-------------------------------------------/
-        // Input Text Checker Start
 
         $('input[type="text"]').each(function () {
             var $input = $(this);
@@ -32,215 +105,158 @@ $(document).ready(function () {
 
             if ($input.val().trim() === "") {
                 $warning.addClass('warningDisplay');
+                $input.css('border', '2px solid red'); // Add red border to the input element
                 hasWarning = true; // Set the flag if there's a warning
             } else {
                 $warning.removeClass('warningDisplay');
+                $input.css('border', ''); // Remove the red border if the value is valid
             }
         });
-        
-        // Input Text Checker End
-        
-        /-------------------------------------------/
 
-       // Input Date Checker Start
-       
+        // Check for date inputs
         $('input[type="date"]').each(function () {
             var $input = $(this);
             var $warning = $input.next('.warning');
 
             if ($input.val() === "") {
                 $warning.addClass('warningDisplay');
+                $input.css('border', '2px solid red'); // Add red border to the input element
                 hasWarning = true; // Set the flag if there's a warning
             } else {
                 $warning.removeClass('warningDisplay');
+                $input.css('border', ''); // Remove the red border if the value is valid
             }
         });
         
-        // Input Date Checker End
-        
-        /-------------------------------------------/
-       
-       // Input Radio Checker Start
-        
-        
-        $('input[type="radio"]').each(function () {
+        return hasWarning;
+    },
+
+    /************************ button 2 start ************************************/
+
+    button2: function () {
+        var hasWarning = false; // Flag to track if there are any warnings
+
+        // Check for select elements related to Button 2
+        $('#client').each(function () {
+            var $select = $(this);
+            var $warning = $select.next('.warning');
+
+            if ($select.val() === "") {
+                $warning.addClass('warningDisplay');
+                $select.css('border', '2px solid red'); // Add red border to the select element
+                hasWarning = true; // Set the flag if there's a warning
+            } else {
+                $warning.removeClass('warningDisplay');
+                $select.css('border', ''); // Remove the red border if the value is valid
+            }
+        });
+
+        // Check for radio buttons related to Button 2
+        $('.etatContainer').each(function () {
             var groupName = $(this).attr('name'); // Get the group name of the radio button
             var $warning = $(this).closest('.etatWrapper').find('.warning'); // Correctly find the warning element in the closest wrapper
 
             // Check if any radio button in the group is chosen
             if ($('input[name="' + groupName + '"]:checked').length === 0) {
-                $warning.addClass('warningDisplay'); // Show warning
+                $warning.addClass('warningDisplay');
+                $(this).closest('.etatWrapper').css('border', '2px solid red'); // Add red border to the radio group wrapper
                 hasWarning = true; // Set the flag if there's a warning
             } else {
-                $warning.removeClass('warningDisplay'); // Hide warning
+                $warning.removeClass('warningDisplay');
+                $(this).closest('.etatWrapper').css('border', ''); // Remove the red border if a radio button is selected
             }
         });
-        
-         // Input Radio Checker End
-         
-         
-         */
-    
-    
-    /********************** Paramètres accordion ***************************/
-    
- $('.accordion-button').on('click', function() {
-    var button = $(this);
 
-    // No need to set transition in JS; it's already handled in CSS
-    // Delay the class toggle slightly to allow the transition to take effect
-    setTimeout(function() {
-        button.toggleClass('collapsed');
-    }, 10); // Keep this small delay to ensure the transition occurs smoothly
-});
-    
-     $('td').each(function() {
-        var accordions = $(this).find('.accordion'); // Get all accordions within the current <td>
-        
-        if (accordions.length > 1) {
-            accordions.not(':last').css('margin-bottom', '10px'); // Apply margin-bottom to all but the last accordion
-        }
+        return hasWarning;
+    },
+    // You can add more button checks here as needed
+    // button3: function () { ... },
+    // button4: function () { ... },
+};
+
+// Function to clear warnings for a specific button type
+function clearWarnings(buttonType) {
+    // Clear warnings for all select fields
+    $('select').each(function () {
+        var $select = $(this);
+        var $warning = $select.next('.warning');
+        $warning.removeClass('warningDisplay'); // Hide warning
+        $select.css('border', ''); // Remove the red border
     });
-    /******************** Print option for buttons + display warning when nothing is selected or choosed or filled  ***********************/
-    /* Start */
 
-   var lastButtonClicked = null; // Track the last clicked button
+    // Clear warnings for all text inputs
+    $('input[type="text"]').each(function () {
+        var $input = $(this);
+        var $warning = $input.next('.warning');
+        $warning.removeClass('warningDisplay'); // Hide warning
+        $input.css('border', ''); // Remove the red border
+    });
 
-    // Object to map button types to their respective warning check functions
-    var buttonWarningChecks = {
-        button1: function () {
-            var hasWarning = false; // Flag to track if there are any warnings
+    // Clear warnings for date inputs
+    $('input[type="date"]').each(function () {
+        var $input = $(this);
+        var $warning = $input.next('.warning');
+        $warning.removeClass('warningDisplay'); // Hide warning
+        $input.css('border', ''); // Remove the red border
+    });
 
-            // Check for select elements related to Button 1
-            $('select').each(function () {
-                var $select = $(this);
-                var $warning = $select.next('.warning');
+    // Clear warnings for radio buttons
+    $('input[type="radio"]').each(function () {
+        var $radio = $(this);
+        var $warning = $radio.closest('.etatWrapper').find('.warning');
+        $warning.removeClass('warningDisplay'); // Hide warning
+        $radio.closest('.etatWrapper').css('border', ''); // Remove the red border from the radio button group wrapper
+    });
+}
 
-                if ($select.val() === "") {
-                    $warning.addClass('warningDisplay');
-                    hasWarning = true;
-                } else {
-                    $warning.removeClass('warningDisplay');
-                }
-            });
+// Attach a single event handler for all buttons
+$('fieldset').on('click', 'button.toggle-button', function (event) {
+    event.preventDefault(); // Prevent the default behavior
 
-            // Add additional checks for input types as needed...
-            $('input[type="text"]').each(function () {
-                var $input = $(this);
-                var $warning = $input.next('.warning');
-
-                if ($input.val().trim() === "") {
-                    $warning.addClass('warningDisplay');
-                    hasWarning = true;
-                } else {
-                    $warning.removeClass('warningDisplay');
-                }
-            });
-
-            // Check for date inputs
-            $('input[type="date"]').each(function () {
-                var $input = $(this);
-                var $warning = $input.next('.warning');
-
-                if ($input.val() === "") {
-                    $warning.addClass('warningDisplay');
-                    hasWarning = true;
-                } else {
-                    $warning.removeClass('warningDisplay');
-                }
-            });
-
-            return hasWarning;
-        },
-        button2: function () {
-            var hasWarning = false; // Flag to track if there are any warnings
-
-            // Check for specific elements related to Button 2
-            $('#client').each(function () {
-                var $select = $(this);
-                var $warning = $select.next('.warning');
-
-                if ($select.val() === "") {
-                    $warning.addClass('warningDisplay');
-                    hasWarning = true;
-                } else {
-                    $warning.removeClass('warningDisplay');
-                }
-            });
-
-            // Check for radio buttons related to Button 2
-            $('input[type="radio"]').each(function () {
-                var groupName = $(this).attr('name'); // Get the group name of the radio button
-                var $warning = $(this).closest('.etatWrapper').find('.warning'); // Correctly find the warning element in the closest wrapper
-
-                // Check if any radio button in the group is chosen
-                if ($('input[name="' + groupName + '"]:checked').length === 0) {
-                    $warning.addClass('warningDisplay'); // Show warning
-                    hasWarning = true; // Set the flag if there's a warning
-                } else {
-                    $warning.removeClass('warningDisplay'); // Hide warning
-                }
-            });
-
-            return hasWarning;
-        },
-        // You can add more button checks here as needed
-        // button3: function () { ... },
-        // button4: function () { ... },
-    };
-
-    // Function to clear warnings for a specific button type
-    function clearWarnings(buttonType) {
-        // Clear warnings for all relevant fields
-        $('select').each(function () {
-            var $warning = $(this).next('.warning');
-            $warning.removeClass('warningDisplay'); // Hide warning
-        });
-
-        $('input[type="text"]').each(function () {
-            var $warning = $(this).next('.warning');
-            $warning.removeClass('warningDisplay'); // Hide warning
-        });
-
-        // Clear warnings for date inputs
-        $('input[type="date"]').each(function () {
-            var $warning = $(this).next('.warning');
-            $warning.removeClass('warningDisplay'); // Hide warning
-        });
-
-        // Clear warnings for radio buttons
-        $('input[type="radio"]').each(function () {
-            var $warning = $(this).closest('.etatWrapper').find('.warning');
-            $warning.removeClass('warningDisplay'); // Hide warning
-        });
+    // Check if the window width is 768px or above before setting overflow
+    if ($(window).width() >= 768) {
+        $('body').css('overflow', 'auto'); // Set body overflow to auto if screen width is 768 or more
     }
 
-    // Attach a single event handler for all buttons
-    $('fieldset').on('click', 'button.toggle-button', function (event) {
-        event.preventDefault(); // Prevent the default behavior
+    // Get the ID of the clicked button to determine which button it is
+    var buttonId = $(this).attr('id'); // Get the button ID
+    var buttonType = buttonId.replace('submit-', 'button'); // Create a button type (button1, button2, etc.)
 
-        // Check if the window width is 768px or above before setting overflow
-        if ($(window).width() >= 768) {
-            $('body').css('overflow', 'auto'); // Set body overflow to auto if screen width is 768 or more
-        }
+    // Clear warnings from the last clicked button if it was not this one
+    if (lastButtonClicked && lastButtonClicked !== buttonType) {
+        clearWarnings(lastButtonClicked);
+    }
 
-        // Get the ID of the clicked button to determine which button it is
-        var buttonId = $(this).attr('id'); // Get the button ID
-        var buttonType = buttonId.replace('submit-', 'button'); // Create a button type (button1, button2, etc.)
+    lastButtonClicked = buttonType; // Update last clicked button
 
-        // Clear warnings from the last clicked button if it was not this one
-        if (lastButtonClicked && lastButtonClicked !== buttonType) {
-            clearWarnings(lastButtonClicked);
-        }
-
-        lastButtonClicked = buttonType; // Update last clicked button
-
-        // Call the appropriate warning check function based on the button clicked
-        var hasWarning = buttonWarningChecks[buttonType] ? buttonWarningChecks[buttonType]() : false; // Call the function for the button type
-        
-    });
-    /* end */
+    // Call the appropriate warning check function based on the button clicked
+    var hasWarning = buttonWarningChecks[buttonType] ? buttonWarningChecks[buttonType]() : false; // Call the function for the button type
     
+// If there are warnings, perform the flash effect
+if ($('.rightSideWrapper .warningDisplay').length) { // Check if there are warnings
+    var $rightSideWrapper = $('.rightSideWrapper');
+
+    // Flash effect immediately
+    $rightSideWrapper.addClass('flash-effect'); // Add flash effect class
+
+    // Remove the flash effect after the specified time
+    setTimeout(function () {
+        $rightSideWrapper.removeClass('flash-effect'); // Revert back to original
+    }, 250); // Flash duration
+
+    // Flash again
+    setTimeout(function () {
+        $rightSideWrapper.addClass('flash-effect'); // Flash again
+    }, 500); // Time until the second flash
+
+    // Revert again
+    setTimeout(function () {
+        $rightSideWrapper.removeClass('flash-effect'); // Revert back to original
+    }, 750); // Revert back to original after the second flash
+}
+
+});
+
      /******************** For Small Screen : Check if theres a red warning and display rightSideWrapper  ***********************/
     /* Start */
 
@@ -391,51 +407,59 @@ $('fieldset button.toggle-button').on('click', function (event) {
     /******************** hide/show warning when you select / fill / choose an element *****************************/
     /* start */
 
-    // Change event for select elements
-    $('select').on('change', function () {
-        var $select = $(this);
-        var $warning = $select.next('.warning');
+// Change event for select elements
+$('select').on('change', function () {
+    var $select = $(this);
+    var $warning = $select.next('.warning');
 
-        if ($select.val() === "") {
-            $warning.addClass('warningDisplay'); // Show warning if empty
-        } else {
-            $warning.removeClass('warningDisplay'); // Hide warning if not empty
-        }
-    });
+    if ($select.val() === "") {
+        $warning.addClass('warningDisplay'); // Show warning if empty
+        $select.css('border', '2px solid red'); // Add red border
+    } else {
+        $warning.removeClass('warningDisplay'); // Hide warning if not empty
+        $select.css('border', ''); // Remove red border
+    }
+});
 
-    // Change event for text inputs
-    $('input[type="text"]').on('input', function () {
-        var $input = $(this);
-        var $warning = $input.next('.warning');
+// Change event for text inputs
+$('input[type="text"]').on('input', function () {
+    var $input = $(this);
+    var $warning = $input.next('.warning');
 
-        if ($input.val().trim() === "") {
-            $warning.addClass('warningDisplay'); // Show warning if empty
-        } else {
-            $warning.removeClass('warningDisplay'); // Hide warning if not empty
-        }
-    });
+    if ($input.val().trim() === "") {
+        $warning.addClass('warningDisplay'); // Show warning if empty
+        $input.css('border', '2px solid red'); // Add red border
+    } else {
+        $warning.removeClass('warningDisplay'); // Hide warning if not empty
+        $input.css('border', ''); // Remove red border
+    }
+});
 
-    // Change event for date inputs
-    $('input[type="date"]').on('change', function () {
-        var $input = $(this);
-        var $warning = $input.next('.warning');
+// Change event for date inputs
+$('input[type="date"]').on('change', function () {
+    var $input = $(this);
+    var $warning = $input.next('.warning');
 
-        if ($input.val() === "") {
-            $warning.addClass('warningDisplay'); // Show warning if empty
-        } else {
-            $warning.removeClass('warningDisplay'); // Hide warning if not empty
-        }
-    });
+    if ($input.val() === "") {
+        $warning.addClass('warningDisplay'); // Show warning if empty
+        $input.css('border', '2px solid red'); // Add red border
+    } else {
+        $warning.removeClass('warningDisplay'); // Hide warning if not empty
+        $input.css('border', ''); // Remove red border
+    }
+});
 
-    // Hide the warning when a radio button is selected
-    $('input[type="radio"]').on('change', function () {
-        var groupName = $(this).attr('name'); // Get the group name of the radio button
-        var $warning = $(this).closest('.etatWrapper').find('.warning'); // Correctly find the warning element
+// Hide the warning when a radio button is selected
+$('input[type="radio"]').on('change', function () {
+    var groupName = $(this).attr('name'); // Get the group name of the radio button
+    var $warning = $(this).closest('.etatWrapper').find('.warning'); // Correctly find the warning element
 
-        if ($('input[name="' + groupName + '"]:checked').length > 0) {
-            $warning.removeClass('warningDisplay'); // Hide the warning if a radio is selected
-        }
-    });
+    if ($('input[name="' + groupName + '"]:checked').length > 0) {
+        $warning.removeClass('warningDisplay'); // Hide the warning if a radio is selected
+        $(this).closest('.etatWrapper').css('border', ''); // Remove red border from the radio button group wrapper
+    }
+});
+
 
     /* end */
     /************* Apply border-radius style if theres more than one button **************/
